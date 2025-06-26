@@ -56,6 +56,7 @@ class Model:
         """
 
         def getAllArchi(self):  # da usare se ho un filtro sui nodi perchè se no mi ritrovo con nodi in più aggiunti
+            # ok per grafo semplice forse
             allArchi = DAO.getAllEdges(self.idmapAirports)
             for e in allArchi:
                 if e.aeroportoP in self._graph and e.aeroportoD in self._graph:  # mi chiedo se posso mettere l'arco ovvero se ho già i nodi
