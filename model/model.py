@@ -62,6 +62,7 @@ class Model:
         nodes.sort(key=lambda n: self.graph.out_degree(n), reverse=True)
         return nodes
 
+    # cammini
     def getBFSNodesFromTree(self, source):
         tree = nx.bfs_tree(self.graph, source)
         archi = list(tree.edges())
