@@ -34,6 +34,36 @@ class Model:
         return self.graph.nodes()
 
 
+    # cammino più corto
+    def getShortestPath(self, u, v):
+        return nx.single_source_dijkstra(self.graph, u, v)
+
+    def getBFSNodesFromTree(self, source):
+        tree = nx.bfs_tree(self.graph, source)
+        archi = list(tree.edges())
+        nodi = list(tree.nodes())
+        return nodi[1:] # non tengo conto del primo elemento
+
+    def getDFSNodesFromTree(self, source):
+        tree = nx.dfs_tree(self.graph, source)
+        nodi = list(tree.nodes())
+        return nodi[1:]
+
+    def getBFSNodesFromEdges(self, source):
+        archi = nx.bfs_edges(self.graph, source)
+        res = []
+        for u, v in archi:
+            res.append(v)
+        return res
+
+    def getDFSNodesFromEdges(self, source):
+        archi = nx.dfs_edges(self.graph, source)
+        res = []
+        for u, v in archi:
+            res.append(v)
+        return res
+
+
     # punto c
     def getMaxComponente(self):
         componenti = list(nx.connected_components(self.graph))
@@ -52,6 +82,8 @@ class Model:
         nodiConPesi.sort(key=lambda x: x[1], reverse=True)
         return nodiConPesi
 
+    def sort_list(lista):
+        return lista.sort(key=lambda x: x[1], reverse=True)  # decrescente
 
 
     # ricorsione
