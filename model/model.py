@@ -41,15 +41,14 @@ class Model:
         return path, total_weight
 
 
-    # cammino più corto in numero di archi
+    # cammino minimo in numero di archi
     def getShortestPath(self, sorgente, destinazione):
         path = nx.shortest_path(self.graph, source=sorgente, target=destinazione)
         return path
-
-    # cammino minimo in numero di archi
     def getPath(self, n1, n2):
         path = nx.dijkstra_path(self.graph, n1, n2, weight=None)
         # path = nx.shortest_path(self._graph, n1, n2, weight = None))
+        return path
 
     # cammino qualsiasi tra due nodi
     def getPath(self, n1, n2):  # cammino ottimo che minimizza la somma dei pesi sugli archi
@@ -63,7 +62,13 @@ class Model:
         nodes.sort(key=lambda n: self.graph.out_degree(n), reverse=True)
         return nodes
 
-    # cammini
+    # cose
+    def getBFSNodesFromTree(self, source):
+        tree = nx.bfs_tree(self.graph, source)
+        archi = list(tree.edges())
+        nodi = list(tree.nodes())
+        return nodi[1:]  # non tengo conto del primo elemento
+
     def getBFSNodesFromTree(self, source):
         tree = nx.bfs_tree(self.graph, source)
         archi = list(tree.edges())
