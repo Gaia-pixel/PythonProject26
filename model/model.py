@@ -56,6 +56,7 @@ class Model:
         path = nx.dijkstra_path(self.graph, n1, n2)
         # path = nx.shortest_path(self._graph, n1, n2)
 
+    # ordino i nodi per numero di archi uscenti decrescente
     def getAllNodesByOutDegree(self):
         # Ritorna i nodi ordinati in base al grado uscente (numero archi uscenti)
         nodes = list(self.graph.nodes)
