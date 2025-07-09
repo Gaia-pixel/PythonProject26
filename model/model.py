@@ -58,7 +58,7 @@ class Model:
         return path, total_weight
 
 
-    # cammino minimo in numero di archi
+    # cammino minimo in numero di archi (non ha senso perchè sarebbe 0 (?))
     def getShortestPath(self, sorgente, destinazione):
         path = nx.shortest_path(self.graph, source=sorgente, target=destinazione)
         return path
@@ -79,7 +79,7 @@ class Model:
         nodes.sort(key=lambda n: self.graph.out_degree(n), reverse=True)
         return nodes
 
-    # cose
+    # cammino piu lungo senza tenere conto del peso degli archi
     def getBFSNodesFromTree(self, source):
         tree = nx.bfs_tree(self.graph, source)
         archi = list(tree.edges())
