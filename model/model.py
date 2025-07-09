@@ -33,6 +33,23 @@ class Model:
     def getNodes(self):
         return self.graph.nodes()
 
+    # punto c
+    def getMaxComponente(self):
+        componenti = list(nx.connected_components(self.graph))
+        componenteCorretta = []
+        for c in componenti:
+            if len(list(c)) > len(componenteCorretta):
+                componenteCorretta = c
+        self.cc = componenteCorretta  # mi serviva per la ricorsione dopo
+        nodiConPesi = []
+        for n in componenteCorretta:  # restituisco lista con i nodi della componente in ordine decr di peso
+            pesoMin = None
+            for vicino in nx.neighbors(self.graph, n):
+                if pesoMin is None or self.graph[vicino][n]['weight'] < pesoMin:
+                    pesoMin = self.graph[vicino][n]['weight']
+            nodiConPesi.append((n, pesoMin))
+        nodiConPesi.sort(key=lambda x: x[1], reverse=True)
+        return nodiConPesi
 
     # cammino peso minimo
     def getShortestPath(self, u, v):
@@ -95,23 +112,6 @@ class Model:
         return res
 
 
-    # punto c
-    def getMaxComponente(self):
-        componenti = list(nx.connected_components(self.graph))
-        componenteCorretta = []
-        for c in componenti:
-            if len(list(c)) > len(componenteCorretta):
-                componenteCorretta = c
-        self.cc = componenteCorretta  # mi serviva per la ricorsione dopo
-        nodiConPesi = []
-        for n in componenteCorretta:  # restituisco lista con i nodi della componente in ordine decr di peso
-            pesoMin = None
-            for vicino in nx.neighbors(self.graph, n):
-                if pesoMin is None or self.graph[vicino][n]['weight'] < pesoMin:
-                    pesoMin = self.graph[vicino][n]['weight']
-            nodiConPesi.append((n, pesoMin))
-        nodiConPesi.sort(key=lambda x: x[1], reverse=True)
-        return nodiConPesi
 
     def sort_list(lista):
         return lista.sort(key=lambda x: x[1], reverse=True)  # decrescente
