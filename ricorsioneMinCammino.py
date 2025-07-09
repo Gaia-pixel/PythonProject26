@@ -25,7 +25,7 @@ def _ricorsioneMinimoNodi(self, parziale, end):
 # cammino peso minimo
 def getCamminoPesoMinimo(self, start_id, end_id):
     self._bestPath = []
-    self._bestScore = float('inf')
+    self._bestScore = None
     start = self._idMap[int(start_id)]
     end = self._idMap[int(end_id)]
     self._ricorsionePesoMinimo([start], end, 0)
