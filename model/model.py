@@ -21,6 +21,7 @@ class Model:
         # prendo gli archi con i rispettivi pesi dal db e li aggiungo al grafo
         allArchi = DAO.getAllArchi(parametro1, parametro2)
         self.graph.add_edges_from(allArchi)
+        # self.graph.add_weighted_edges_from(allArchi) grafo pesato pesato
 
         # oppure
         lista = DAO.getAllArchi(parametro1, parametro2)
