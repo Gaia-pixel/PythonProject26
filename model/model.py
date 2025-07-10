@@ -79,7 +79,12 @@ class Model:
         nodes.sort(key=lambda n: self.graph.out_degree(n), reverse=True)
         return nodes
 
-    # cammino piu lungo senza tenere conto del peso degli archi
+    # cammino piu lungo senza tenere conto del peso
+    def getCammino(self, nodo):
+        cammino = nx.dfs_tree(self.graph, nodo)  # cammino più lungo
+        n = list(cammino.nodes()) # tree : grafo connesso, non diretto
+        return n
+
     def getBFSNodesFromTree(self, source):
         tree = nx.bfs_tree(self.graph, source)
         archi = list(tree.edges())
